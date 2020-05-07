@@ -1,6 +1,15 @@
+# Creating a Raspberry Pi Azure DevOps Build Agent
+
+## Why? 
+
+I've got a couple of Pi machines sitting around. I wanted to do something useful with them. 
+
+I'm currently collaborating with other developers on personal projects. We're using automated builds to create nuget packaged reusable components. I wanted to make sure that we didn't consume more than the 1800hrs per month free build time. So I thought it would be a good idea to put those Pi's to work!
 
 
-## Setup Rasbian Buster Lite
+## Step by Step Guide
+
+### Setup Rasbian Buster Lite
 
 * Download Rasbian Buster Lite (Lite doesn’t have a desktop) - ignore any outdated guides telling you to use Stretch. Get it here: https://www.raspberrypi.org/downloads/raspbian/
 
@@ -9,7 +18,7 @@
 * Pop the SD card in your Pi and turn it on, it will set itself up.
 
 
-## Setup Wifi and SSH 
+### Setup Wifi and SSH 
 
 Use the following terminal command to setup WiFi and SSH:
 
@@ -41,7 +50,7 @@ passwd: password updated successfully
 ```
 
 
-## Install Docker
+### Install Docker
 
 ``` terminal
 > sudo apt-get update -y && \
@@ -61,7 +70,7 @@ This message shows that your installation appears to be working correctly...
 
 ```
 
-## Install Portainer
+### Install Portainer
 
 Now let's run and install portainer to manage our containers and instances. 
 
@@ -133,7 +142,7 @@ Now we can build the docker image:
 > sudo docker run -e VSTS_SERVER_URL=https://dev.azure.com/<your username> -e VSTS_TOKEN=<pat token> -e AGENT_NAME=raspi -e AGENT_POOL=RasPi --name azure-build-agent azure-devops-agent:latest ./
 ```
 
-Sources: <p>
+## Sources: <p>
 Original Dockerfile Reference (though I updated this a bit):<br>
 https://github.com/Ellerbach/Azure-DevOps-Docker
 
